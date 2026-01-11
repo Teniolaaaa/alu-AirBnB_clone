@@ -24,19 +24,25 @@ class TestConsole(unittest.TestCase):
     def test_quit(self):
         """Test quit command"""
         with patch('sys.stdout', new=StringIO()) as f:
-            HBNBCommand().onecmd("quit")
-            self.assertEqual(f.getvalue(), "")
+            self.assertTrue(HBNBCommand().onecmd("quit"))
 
     def test_EOF(self):
         """Test EOF command"""
         with patch('sys.stdout', new=StringIO()) as f:
-            HBNBCommand().onecmd("EOF")
-            self.assertEqual(f.getvalue(), "\n")
+            self.assertTrue(HBNBCommand().onecmd("EOF"))
 
     def test_emptyline(self):
         """Test empty line"""
         with patch('sys.stdout', new=StringIO()) as f:
-            HBNBCommand().onecmd("")
+            result = HBNBCommand().onecmd("")
+            self.assertIsNone(result)
+            self.assertEqual(f.getvalue(), "")
+
+    def test_emptyline_with_spaces(self):
+        """Test empty line with spaces"""
+        with patch('sys.stdout', new=StringIO()) as f:
+            result = HBNBCommand().onecmd("   ")
+            self.assertIsNone(result)
             self.assertEqual(f.getvalue(), "")
 
     def test_create(self):
