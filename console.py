@@ -49,6 +49,12 @@ class HBNBCommand(cmd.Cmd):
         """Do nothing when an empty line is entered"""
         pass
 
+    def precmd(self, line):
+        """Preprocess command line - handle lines with only spaces"""
+        if line.strip() == '':
+            return ''
+        return line
+
     def do_create(self, arg):
         """
         Create a new instance of BaseModel, save it, and print the id.
