@@ -9,7 +9,7 @@ from models.base_model import BaseModel
 class Place(BaseModel):
     """
     Place class that inherits from BaseModel.
-    
+
     Attributes:
         city_id (str): The City.id
         user_id (str): The User.id
@@ -23,7 +23,7 @@ class Place(BaseModel):
         longitude (float): Longitude coordinate
         amenity_ids (list): List of Amenity.id
     """
-    
+
     city_id = ""
     user_id = ""
     name = ""

@@ -9,12 +9,12 @@ from models.base_model import BaseModel
 
 class TestPlace(unittest.TestCase):
     """Test cases for Place class"""
-    
+
     def test_place_inherits_from_base_model(self):
         """Test that Place inherits from BaseModel"""
         place = Place()
         self.assertIsInstance(place, BaseModel)
-    
+
     def test_place_has_required_attributes(self):
         """Test Place has all required attributes"""
         place = Place()
@@ -29,7 +29,7 @@ class TestPlace(unittest.TestCase):
         self.assertTrue(hasattr(place, 'latitude'))
         self.assertTrue(hasattr(place, 'longitude'))
         self.assertTrue(hasattr(place, 'amenity_ids'))
-    
+
     def test_place_attribute_types(self):
         """Test Place attribute types"""
         place = Place()
@@ -44,7 +44,7 @@ class TestPlace(unittest.TestCase):
         self.assertIsInstance(place.latitude, float)
         self.assertIsInstance(place.longitude, float)
         self.assertIsInstance(place.amenity_ids, list)
-    
+
     def test_place_attribute_defaults(self):
         """Test Place attribute default values"""
         place = Place()
@@ -59,16 +59,16 @@ class TestPlace(unittest.TestCase):
         self.assertEqual(place.latitude, 0.0)
         self.assertEqual(place.longitude, 0.0)
         self.assertEqual(place.amenity_ids, [])
-    
+
     def test_place_to_dict(self):
         """Test Place to_dict method"""
         place = Place()
         place.name = "My Place"
         place.number_rooms = 3
         place.price_by_night = 100
-        
+
         place_dict = place.to_dict()
-        
+
         self.assertEqual(place_dict['__class__'], 'Place')
         self.assertEqual(place_dict['name'], "My Place")
         self.assertEqual(place_dict['number_rooms'], 3)
