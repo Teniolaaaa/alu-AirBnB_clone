@@ -88,8 +88,10 @@ class TestBaseModel(unittest.TestCase):
         model = BaseModel()
         model_dict = model.to_dict()
 
-        created_at = datetime.strptime(model_dict['created_at'], '%Y-%m-%dT%H:%M:%S.%f')
-        updated_at = datetime.strptime(model_dict['updated_at'], '%Y-%m-%dT%H:%M:%S.%f')
+        created_at = datetime.strptime(
+            model_dict['created_at'], '%Y-%m-%dT%H:%M:%S.%f')
+        updated_at = datetime.strptime(
+            model_dict['updated_at'], '%Y-%m-%dT%H:%M:%S.%f')
 
         self.assertIsInstance(created_at, datetime)
         self.assertIsInstance(updated_at, datetime)
