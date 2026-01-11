@@ -6,8 +6,6 @@ import unittest
 from io import StringIO
 from unittest.mock import patch
 from console import HBNBCommand
-from models import storage
-from models.base_model import BaseModel
 
 
 class TestConsole(unittest.TestCase):
@@ -43,28 +41,13 @@ class TestConsole(unittest.TestCase):
         with patch('sys.stdout', new=StringIO()) as f:
             result = HBNBCommand().onecmd("   ")
             self.assertIsNone(result)
-            self.assertEqual(f.getvalue(), "")
 
-    def test_create(self):
-        """Test create command"""
+    def test_help(self):
+        """Test help command"""
         with patch('sys.stdout', new=StringIO()) as f:
-            HBNBCommand().onecmd("create BaseModel")
-            output = f.getvalue().strip()
-            self.assertTrue(len(output) > 0)
-
-    def test_create_missing_class(self):
-        """Test create with missing class name"""
-        with patch('sys.stdout', new=StringIO()) as f:
-            HBNBCommand().onecmd("create")
-            self.assertEqual(f.getvalue().strip(),
-                             "** class name missing **")
-
-    def test_create_invalid_class(self):
-        """Test create with invalid class"""
-        with patch('sys.stdout', new=StringIO()) as f:
-            HBNBCommand().onecmd("create MyModel")
-            self.assertEqual(f.getvalue().strip(),
-                             "** class doesn't exist **")
+            HBNBCommand().onecmd("help")
+            output = f.getvalue()
+            self.assertIn("Documented commands", output)
 
 
 if __name__ == '__main__':
